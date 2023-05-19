@@ -10,5 +10,16 @@ VALUES ('17352','300689617','Jens','Jensen','generel practice','71898903','jeje@
 INSERT INTO doctor
 VALUES ('17625','282099252','Line','Andersen','generel practice','71847603','lian@lægehusetkøbenhavn.dk');
 
+INSERT INTO journal(`patientCPR-nr`)
+VALUES (1908765103);
+INSERT INTO journal(`patientCPR-nr`)
+VALUES (1805026783);
+INSERT INTO journal(`patientCPR-nr`)
+VALUES (1411025134);
+
+INSERT INTO consultation
+VALUES (1,1411025134,17625,230519,230519123000,'Får ofte hovedpine, udskriver recept på panodil og ny konsultation om en måned','','Hovedpine 3 gange seneste uge og 4 gange ugen før');
+INSERT INTO consultation (`Id`,`patientCPR-nr`,`doctorId`,`date`,`time`)
+VALUES (2,1411025134,17625,230619,230619123000);
 
 
