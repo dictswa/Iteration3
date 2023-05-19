@@ -1,0 +1,120 @@
+@startuml
+
+class Patient{
+CPR: integer
+navn: string
+fødselsdag: DATE
+alder: integer
+Telefon: integer
+Email: string
+Adresse: string
+Diagnoser: string
+registrer()
+opdaterInfo()
+addDiagnose()
+}
+
+class Database{
+navn: string
+tabeller: string
+create()
+drop()
+insert()
+update()
+delete()
+select()
+}
+
+
+class Læge{
+Navn: string
+ID: integer
+Speciale: string
+Telefon: integer
+Email: string
+opdaterInfo()
+}
+
+
+class LabResultat{
+PatientCPR: integer
+Dato: integer
+Tid: integer
+Rekvision: integer
+Tests: string
+Kommentar: string
+addResultat()
+}
+
+class Recept{
+Dato: DATE
+PatientCPR: integer
+LægeID: integer
+Dose: float
+Brug: string
+add()
+forny()
+remove()
+}
+
+class Journalnotat{
+Dato: DATE
+PatientCPR: integer
+LægeID: integer
+Indhold: string
+addNotat()
+redigerNotat()
+remove()
+}
+
+class JournalnotatLæge{
+LægeID: integer
+Synlig: True/False
+}
+
+class Journal{
+}
+
+class Konsultation{
+Dato: DATE
+Tidspunkt: TIME
+Titel: string
+PatientCPR: integer
+LægeID: integer
+Årsag: string
+opret()
+rediger()
+remove()
+}
+
+class Præparat{
+Navn: string
+Type: string
+kemisknavn: string
+Koncentration: float
+Virkning: string
+}
+
+
+Database"1"--"*"Patient
+Database"1"--"*"Læge
+Database"1"--"*"LabResultat
+Database"1"--"*"Journal
+Database"1"--"*"Konsultation
+Database"1"--"*"Recept
+Database"1"--"*"Præparat
+
+Læge"1..*" -- "*"Konsultation : opretter
+Patient "1"-- "0..1"Journalnotat : skriver
+Patient "1"-r-"*" LabResultat
+Læge "1..*"--"*" LabResultat
+Læge "1" -- "1..2"JournalnotatLæge : skriver
+Læge"1..*" -- "*"Recept : udskriver
+
+Journal "1" o-- "*"Konsultation
+Journal "1" o-- "1" Patient
+Konsultation"1" *-- "1..3"Journalnotat
+Recept"1" *-- "1"Præparat
+
+Journalnotat<|-r-JournalnotatLæge
+@enduml
