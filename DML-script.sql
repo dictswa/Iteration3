@@ -44,3 +44,16 @@ WHERE `patientCPR-nr`=1908765103;
 
 SELECT * FROM consultation
 WHERE `doctorId`=17625 and `time`>CURRENT_TIMESTAMP;
+
+INSERT INTO labresult
+VALUES (1,1805026783,17352,211113,0.35,7.33,14.8,3.88,0.35,29.0,0.35);
+INSERT INTO labresult
+VALUES (2,1411025134,17625,210408,0.35,0.35,0.35,0.35,0.35,0.35,0.35);
+
+INSERT INTO medication
+VALUES (1,'smertestillende/febernedsættende','paracetamol','C8H9NO2','smertestillende/feernedsættende');
+
+INSERT INTO prescription
+VALUES (1,1,1411025134,17625,1000,'Mod hovedpine');
+
+
