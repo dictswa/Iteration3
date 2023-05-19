@@ -21,5 +21,26 @@ INSERT INTO consultation
 VALUES (1,1411025134,17625,230519,230519123000,'Får ofte hovedpine, udskriver recept på panodil og ny konsultation om en måned','','Hovedpine 3 gange seneste uge og 4 gange ugen før');
 INSERT INTO consultation (`Id`,`patientCPR-nr`,`doctorId`,`date`,`time`)
 VALUES (2,1411025134,17625,230619,230619123000);
+INSERT INTO consultation
+VALUES (3,1805026783,17352,211113,211113140000,'Almindeligt sundhedstjek. Blodtryk mildt forhøjet opfølgning ved næste tjek','','');
+INSERT INTO consultation (`Id`,`patientCPR-nr`,`doctorId`,`date`,`time`)
+VALUES (4,1908765103,17352,230522,230522111500);
 
+UPDATE journal
+SET `consultation-1`=1,`consultation-2`=2
+WHERE `patientCPR-nr`=1411025134;
+UPDATE journal
+SET `consultation-1`=3
+WHERE `patientCPR-nr`=1805026783;
+UPDATE journal
+SET `consultation-1`=4
+WHERE `patientCPR-nr`=1908765103;
 
+DELETE FROM consultation
+WHERE Id=4;
+UPDATE journal
+SET `consultation-1`=NULL
+WHERE `patientCPR-nr`=1908765103;
+
+SELECT * FROM consultation
+WHERE `doctorId`=17625 and `time`>CURRENT_TIMESTAMP;
